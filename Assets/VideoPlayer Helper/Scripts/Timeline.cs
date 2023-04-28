@@ -331,11 +331,13 @@ namespace Unity.VideoHelper
         {
             isInControl = true;
 
+               
             if (handleRect != null)
                 SetActive(handleRect.gameObject, true);
 
             if (tooltipRect != null)
                 tooltipRect.gameObject.SetActive(true);
+               
         }
 
         private void SetActive(GameObject gameObject, bool value)
@@ -385,6 +387,7 @@ namespace Unity.VideoHelper
 
             base.OnPointerDown(eventData);
 
+               //Debug.Log("asfd");
             handleOffset = Vector2.zero;
             if (handleContainerRect != null && RectTransformUtility.RectangleContainsScreenPoint(handleRect, eventData.position, eventData.enterEventCamera))
             {
@@ -392,10 +395,12 @@ namespace Unity.VideoHelper
                 if (RectTransformUtility.ScreenPointToLocalPointInRectangle(handleRect, eventData.position, eventData.pressEventCamera, out localMousePos))
                     handleOffset = localMousePos;
                 handleOffset.y = -handleOffset.y;
-            }
+                    Debug.Log("if ~~~");
+               }
             else
             {
-                UpdateDrag(eventData, eventData.pressEventCamera);
+                    Debug.Log("if ~~~else");
+                    UpdateDrag(eventData, eventData.pressEventCamera);
             }
         }
 
